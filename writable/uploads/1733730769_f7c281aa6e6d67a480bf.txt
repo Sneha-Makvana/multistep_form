@@ -1,0 +1,59 @@
+1.
+
+SELECT school.name AS School_name,
+	   branch.name as Branch_name
+FROM school
+JOIN branch 
+ON school.id = branch.school_id
+GROUP BY school.name,branch.name;
+
+2.
+
+select school.name as School_name,
+       branch.name as Branch_name,
+       count(student.id) as Number_of_students
+FROM school
+JOIN branch
+ON school.id = branch.school_id
+LEFT JOIN student
+ON branch.id = student.branch_id
+GROUP BY school.name, branch.name;
+
+
+3.
+
+SELECT school.name as School_Name,
+       branch.name as Branch_Name,
+       student.name as student_name,
+       student.address as student_add,
+       student.course as student_course
+FROM school
+JOIN branch
+ON school.id = branch.school_id  
+JOIN student
+ON branch.id = student.branch_id
+ORDER BY school.name, branch.name, student.name;
+
+
+
+1.Insert / update / delete operation PHP :=
+
+* create table :=
+CREATE TABLE employee (
+    id INT(11) PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    address VARCHAR(255) NOT NULL,
+    contact_no VARCHAR(20) NOT NULL,
+    branch VARCHAR(255) NOT NULL,
+    position VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE salary (
+    id INT(11) PRIMARY KEY,
+    emp_id INT(11),
+    salary DECIMAL(10, 2) NOT NULL,
+    attendance INT(3) NOT NULL,
+    leave_days INT(3) NOT NULL,
+    FOREIGN KEY (emp_id) REFERENCES employee(id)
+);
